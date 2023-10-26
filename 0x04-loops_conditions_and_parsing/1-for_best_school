@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# prints the string hello world to stdout
+#+ using a for loop
+for i in {0..9}
+do
+	case $i in
+		[0-9])
+			echo "Best School"
+			;;
+	esac
+done
