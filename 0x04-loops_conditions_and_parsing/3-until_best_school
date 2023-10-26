@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# prints the string hello world to stdout
+#+ using a while loop
+i=0
+until ((i == 10))
+do
+			echo "Best School"
+			((i++))
+done
