@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# displays content of a  directory in list format
+
+for line in $(echo *)
+do
+	echo "$line" | cut -d '-' -f 2 
+done
+
