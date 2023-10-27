@@ -3,7 +3,7 @@
 
 if [ -e "school" ]
 	then
-		echo "school exist"
+		echo "school file exists"
 
 		if [ -s "school" ]
 			then
@@ -14,7 +14,7 @@ if [ -e "school" ]
 
 		if [ -f "school" ]
 			then 
-				echo "school file is a regular file"
+				echo "school is a regular file"
 		fi
 else
 	echo "school file does not exist"
