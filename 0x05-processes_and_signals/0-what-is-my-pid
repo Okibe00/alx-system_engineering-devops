@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# displays own process id
+
+pgrep -f "$0"
