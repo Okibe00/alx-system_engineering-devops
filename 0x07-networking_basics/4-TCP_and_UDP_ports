@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# provides answers to networking questions
+netstat -pl
