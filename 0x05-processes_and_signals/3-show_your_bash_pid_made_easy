@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 # displays own process id
-ps auxf
+pgrep -l bash
+
