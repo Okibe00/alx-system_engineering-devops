@@ -1,0 +1,4 @@
+Host ubuntu
+	HostName 52.91.126.51
+	IdentityFile ~/.ssh/school
+	User ubuntu 
