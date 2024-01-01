@@ -5,7 +5,7 @@
 
 file {
 'config_file':
-ensure  => 'present',
-path    => '/home/okibe/.ssh/config',
-content => "Host ubuntu\n\tHostName 52.91.126.51\n\tUser ubuntu\n\tIdentityFile ~/.ssh/school"
+ensure  => present,
+path    => '/etc/ssh/ssh_config',
+content => "IdentityFile ~/.ssh/school\n\tPasswordAuthentication no"
 }
