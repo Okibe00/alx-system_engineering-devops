@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # create a redirection configuration
+sudo ./1-install_nginx_web_server
 search='server_name _;'
 repl="a \ \ \ \ \ \ \ \ location /redirect_me {return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}"
 sudo sed -i "/$search/$repl" /etc/nginx/sites-available/default
