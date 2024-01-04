@@ -6,3 +6,4 @@ repl="a \ \ \ \ \ \ \ \ error_page 404 /404.html;"
 sudo chown -R "$USER":"$USER" /var/www/html/
 echo "Ceci n'est pas une page" > /var/www/html/404.html
 sudo sed -i "/$search/$repl" /etc/nginx/sites-available/default
+sudo service nginx restart
