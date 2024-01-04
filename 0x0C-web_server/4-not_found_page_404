@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # create a redirection configuration
 sudo ./3-redirection
+sudo service nginx restart
 search='server_name _;'
 repl="a \ \ \ \ \ \ \ \ error_page 404 /404.html;"
 sudo chown -R "$USER":"$USER" /var/www/html/
