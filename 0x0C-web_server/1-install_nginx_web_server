@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
-# install nginx x
-sudo apt-get -y remove nginx nginx-common
-sudo apt-get -y purge nginx nginx-common nginx-core
-sudo apt-get -y autoremove
+# install a fresh copy of nginx
+prog="nginx"
+if command -v "$prog"
+	then
+		sudo apt-get -y remove nginx nginx-common
+		sudo apt-get -y purge nginx nginx-common nginx-core
+		sudo apt-get -y autoremove
+fi
+
 sudo apt-get -y  update
 sudo apt-get -y install nginx
 sudo service ufw start
@@ -10,4 +15,9 @@ sudo ufw allow ssh
 sudo ufw allow 'Nginx HTTP'
 sudo chown -R "$USER":"$USER" /var/www/html/
 echo 'Hello World!' > /var/www/html/index.html
+
+# create  custom header
+search='server_name _;'
+repl="a \ \ \ \ \ \ \ \ add_header X-Served-By \$hostname;"
+sudo sed -i "/$search/$repl" /etc/nginx/sites-available/default
 sudo service nginx restart
