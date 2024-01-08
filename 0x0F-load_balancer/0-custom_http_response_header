@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# install a fresh copy of nginx
+# fresh install of nginx x
+#uninstall previous nginx server if present
 prog="nginx"
 if command -v "$prog"
 	then
@@ -7,7 +8,7 @@ if command -v "$prog"
 		sudo apt-get -y purge nginx nginx-common nginx-core
 		sudo apt-get -y autoremove
 fi
-
+# install nginx and enable firewall
 sudo apt-get -y  update
 sudo apt-get -y install nginx
 sudo service ufw start
@@ -16,8 +17,17 @@ sudo ufw allow 'Nginx HTTP'
 sudo chown -R "$USER":"$USER" /var/www/html/
 echo 'Hello World!' > /var/www/html/index.html
 
-# create  custom header
+#add custom response header
 search='server_name _;'
 repl="a \ \ \ \ \ \ \ \ add_header X-Served-By \$hostname;"
+sudo sed -i "/$search/$repl" /etc/nginx/sites-available/default
+
+# create a redirection configuration
+repl="a \ \ \ \ \ \ \ \ location /redirect_me {return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;}"
+sudo sed -i "/$search/$repl" /etc/nginx/sites-available/default
+
+# create a redirection configuration
+repl="a \ \ \ \ \ \ \ \ error_page 404 /404.html;"
+echo "Ceci n'est pas une page" > /var/www/html/404.html
 sudo sed -i "/$search/$repl" /etc/nginx/sites-available/default
 sudo service nginx restart
