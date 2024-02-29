@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# configure a web server to listen on port 80
+if command -v nginx &> /dev/null;
+	then
+		sudo sed -i "/server {/a\ \tlisten 80 default_server;" "/etc/nginx/sites-available/default"
+else
+	sudo apt-get -y update
+	sudo apt-get -y install nginx
+	sudo service nginx start
+fi
