@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # install and configure a haproxy load balancer
 prog="haproxy"
-if command -v "$prog"
+if command -v "$prog" &> /dev/null
 	then
 		sudo apt-get -y purge haproxy
 		sudo apt-get -y remove haproxy
@@ -17,8 +17,8 @@ sed -i 's/option.*httplog/option\ttcplog/g' /etc/haproxy/haproxy.cfg
 
 fe="frontend test_frontend\n\t\tbind *:80\n\t\tdefault_backend test_backend"
 echo -e  "$fe" >> /etc/haproxy/haproxy.cfg
-sv1="\t\tserver 301201-web-01 54.83.131.29:80 check"
-sv2="\t\tserver 301201-web-02 54.84.66.199:80 check"
+sv1="\t\tserver 301201-web-01 100.24.235.89:80 check"
+sv2="\t\tserver 301201-web-02 52.87.232.104:80 check"
 be="backend test_backend\n\t\tbalance roundrobin\n\t\tmode tcp\n\t\t$sv1\n\t\t$sv2"
 echo -e "$be" >> /etc/haproxy/haproxy.cfg
 sudo service haproxy restart
