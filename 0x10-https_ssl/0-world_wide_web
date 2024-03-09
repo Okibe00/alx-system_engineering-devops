@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Display information about subdomains
+
+get_record()
+{
+	domain="$1"
+	subdomain="$2"
+	full_path="${subdomain}.$domain"
+	record=$(dig "$full_path" A | grep -A1 'ANSWER SECTION'|grep "$subdomain")
+	echo "$record" | awk -v s="$subdomain" '{print "The subdomain " s " is a "$4" record and points to "$5""}'
+}
+get_all_record()
+{
+get_record "$1" "www"
+get_record "$1" "lb-01"
+get_record "$1" "web-01"
+get_record "$1" "web-02"
+}
+if [ "$#" -eq 2 ]
+then
+	get_record "$1" "$2"
+	exit
+elif [ "$#" -eq 1 ]
+then
+	get_all_record $1
+fi
