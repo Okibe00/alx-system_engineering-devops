@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# execute a command as a differet user
+
+
+if id "$1" &> "/dev/null"
+then
+	if [ "$#" -eq 1 ] 
+	then
+		sudo -u "$1" "whoami"
+	fi
+fi
