@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# run nginx master process as nginx user
+sed -i "s/#user www-data/user nginx/" "/etc/nginx/nginx.conf"
+chmod a=r '/etc/nginx/nginx.conf'
+sudo -u nginx /etc/init.d/nginx start
+chmod 000 '/etc/nginx/nginx.conf'
