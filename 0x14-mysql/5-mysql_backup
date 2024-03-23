@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# create a database backup
+
+
+if [ "$#" -eq 1 ]
+then
+	filename=$(date +'%d-%m-%y')'.tar.gz'
+	mysqldump --all-databases -u root -p"$1" > "backup.sql"
+	tar -cvzf "$filename" "backup.sql"
+fi
+
+
