@@ -52,7 +52,7 @@ if __name__ == '__main__':
             resp = usr_arr.json()
             for obj in resp:
                 if obj.get('id') == usr_id:
-                    return(obj.get('name'))
+                    return (obj.get('name'))
         else:
             print(usr_arr.status_code)
 
